@@ -47,7 +47,7 @@ export function nextId(userId?: number) {
       seq: seq + 1,
     };
 
-    // update firestore then return id
+    // update firestore then return id but future
     fs.writeFileSync(root, JSON.stringify(data), { flag: "w" });
 
     return id.toString();

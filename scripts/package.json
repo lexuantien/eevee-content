@@ -1,10 +1,6 @@
 {
   "name": "@eevee/scripts",
   "version": "1.0.0",
-  "private": true,
-  "bin": {
-    "just-scripts": "./just-scripts.js"
-  },
   "devDependencies": {
     "p-queue": "^6.0.2",
     "mdx-bundler": "9.0.1",
@@ -15,6 +11,7 @@
     "plop": "^2.6.0",
     "long": "5.2.0",
     "big-integer": "1.6.51",
-    "@types/node": "^17.0.36"
+    "@types/node": "^17.0.36",
+    "remark-mdx-code-meta": "1.0.0"
   }
 }

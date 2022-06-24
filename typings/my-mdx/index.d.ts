@@ -47,6 +47,7 @@ export type MdxListItem = Omit<MdxPage, "code">;
 
 export type MDXCollection = MdxPage & {
   readTime: ReadTimeResults;
+  toc: any;
 };
 
 export type Post = MDXCollection;

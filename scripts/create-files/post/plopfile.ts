@@ -4,6 +4,7 @@ import { getAuthor } from "./getAuthor";
 import { findGitRoot } from "../../monorepo/index";
 import { slugify } from "../../slugify";
 import { nextId } from "../../uuid/index";
+import { authors } from "../../../authors";
 
 const root = findGitRoot();
 
@@ -42,6 +43,10 @@ function formatDate(date: Date) {
     padTo2Digits(date.getMonth() + 1),
     date.getFullYear(),
   ].join("/");
+}
+
+function getAuthorNicknameList() {
+  return Object.keys(authors);
 }
 
 module.exports = (plop: NodePlopAPI) => {
@@ -86,25 +91,26 @@ module.exports = (plop: NodePlopAPI) => {
           ) || "Must enter valid date dd/mm/yyyy",
       },
       {
-        type: "input",
+        type: "list",
         name: "author",
         message: "Author (ex: tienlx97)",
-        default: "tienlx97",
-        validate: (input: string) => !!input || "Must enter author",
+        choices: getAuthorNicknameList,
+        validate: (author: string) =>
+          getAuthorNicknameList().includes(author) || "Must enter author",
       },
       {
         type: "input",
         name: "categories",
         message: "category",
         default: "react",
-        // validate: (input: string) => !!input || 'Must enter a categories',
+        validate: (input: string) => !!input || "Must enter a categories",
       },
       {
         type: "input",
         name: "keywords",
         message: "some keywords",
         default: "react typescript",
-        // validate: (input: string) => !!input || 'Must enter a categories',
+        validate: (input: string) => !!input || "Must enter a categories",
       },
     ],
 
@@ -130,7 +136,7 @@ module.exports = (plop: NodePlopAPI) => {
           data,
           skipIfExists: true,
         },
-        () => "Blog generate ready!",
+        () => "Post generate successfully!",
       ];
     },
   });
