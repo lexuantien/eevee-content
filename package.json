@@ -1,0 +1,80 @@
+{
+  "name": "@eevee/eevee-content",
+  "version": "1.0.0",
+  "description": "content for my personal blog",
+  "private": true,
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/lexuantien/eevee-content"
+  },
+  "license": "MIT",
+  "workspaces": {
+    "packages": [
+      "scripts",
+      "typings"
+    ],
+    "nohoist": []
+  },
+  "scripts": {
+    "create-post": "plop --plopfile ./scripts/create-files/post/plopfile.ts --dest . --require ./scripts/ts-node-register",
+    "refresh-content": "node --experimental-specifier-resolution=node --loader ts-node/esm scripts/github/getChangedFiles.ts"
+  },
+  "main": "index.js",
+  "devDependencies": {
+    "@types/lerna-alias": "^3.0.1",
+    "@types/node": "^17.0.36",
+    "@types/node-fetch": "^2.6.1",
+    "@types/react": "17.0.39",
+    "@types/react-dom": "17.0.11",
+    "@types/yargs": "^17.0.10",
+    "@types/yargs-unparser": "^2.0.1",
+    "cross-env": "^7.0.3",
+    "esbuild-loader": "^2.19.0",
+    "jju": "^1.4.0",
+    "lerna-alias": "^3.0.2",
+    "react-test-renderer": "^18.1.0",
+    "syncpack": "5.6.10",
+    "semver": "^6.2.0",
+    "tmp": "^0.2.1",
+    "ts-loader": "^9.3.0",
+    "ts-node": "^10.8.0",
+    "tslib": "2.4.0",
+    "typescript": "4.3.5",
+    "yargs": "^17.5.1",
+    "yargs-parser": "13.1.2",
+    "yargs-unparser": "^2.0.0",
+    "node-plop": "^0.25.0",
+    "p-queue": "^6.0.2",
+    "mdx-bundler": "9.0.1",
+    "reading-time": "1.5.0",
+    "remark-mdx-images": "1.0.3",
+    "firebase": "9.8.3",
+    "plop": "^2.6.0",
+    "long": "5.2.0",
+    "big-integer": "1.6.51"
+  },
+  "syncpack": {
+    "prod": true,
+    "dev": true,
+    "peer": false,
+    "source": [
+      "package.json",
+      "scripts/package.json"
+    ],
+    "versionGroups": [
+      {
+        "packages": [
+          "@eevee/eevee-repo"
+        ],
+        "dependencies": [
+          "chalk",
+          "fs-extra",
+          "glob",
+          "jju",
+          "yargs",
+          "tslib"
+        ]
+      }
+    ]
+  }
+}

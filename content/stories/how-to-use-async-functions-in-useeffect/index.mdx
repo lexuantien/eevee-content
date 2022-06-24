@@ -1,0 +1,37 @@
+---
+id: 3038517924585219073
+title: How to use async functions in useEffect
+slugify: how-to-use-async-functions-in-useeffect
+description: useEffect in deep
+date: 24/06/2022
+author:
+  - Le Xuan Tien
+  - https://facebook.com/tienlx97
+  - 6969
+post: stories
+categories:
+  - react
+meta:
+  keywords:
+    - useEffect
+    - async
+---
+
+import { InlineCode, SideNote } from "@eevee/react-mdx-comp";
+
+<InlineCode>useEffect</InlineCode> is usually the place where data fetching happens
+in React. Data fetching means using asynchronous functions, and using them in <InlineCode>
+  useEffect
+</InlineCode> might not be as straightforward as you'd think. Read on to learn more
+about it!
+
+# The wrong way
+
+There's one wrong way to do data fetching in <InlineCode>useEffect</InlineCode> . If you write the following code, your linter will scream at you!
+
+<SideNote type="success">
+  You are using a linter right? If not,{" "}
+  <TextLink href="https://reactjs.org/docs/hooks-rules.html">
+    you really should!
+  </TextLink>
+</SideNote>

@@ -1,0 +1,25 @@
+---
+id: {{postId}}
+title: {{title}}
+slugify: {{slugifyTitle}}
+description: {{description}}
+date: {{date}}
+author:
+  - {{authorDetail.name}}
+  - {{authorDetail.url}}
+  - {{authorDetail.id}}
+post: {{postType}}
+categories:
+{{#each categoryList}}
+  - {{this}}
+{{/each}}
+meta:
+  keywords:
+  {{#each keywordList}}
+    - {{this}}
+  {{/each}}
+---
+
+import {Em} from '@eevee/react-mdx-comp'
+
+Hello <Em>{{authorDetail.name}}</Em>

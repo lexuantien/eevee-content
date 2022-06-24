@@ -1,0 +1,20 @@
+{
+  "extends": "../tsconfig.base.json",
+  "compilerOptions": {
+    "isolatedModules": true,
+    "allowSyntheticDefaultImports": true,
+    "skipLibCheck": false,
+    "noEmit": true,
+    "types": []
+  },
+  "include": [],
+  "files": [],
+  "references": [
+    {
+      "path": "./static-assets/tsconfig.json"
+    },
+    {
+      "path": "./my-mdx/tsconfig.json"
+    }
+  ]
+}
