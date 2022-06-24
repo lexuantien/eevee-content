@@ -61,7 +61,9 @@ async function go() {
     });
 
     contentPaths.forEach((element) => {
-      if (element.changeType && element.changeType != "D") postMdxPost(element);
+      if (element.changeType && element.changeType != "D") {
+        postMdxPost(element);
+      }
     });
 
     console.log(`Content change request finished.`);

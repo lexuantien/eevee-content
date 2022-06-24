@@ -23,7 +23,7 @@ export const authors = {
 };
 ```
 
-- In root project, use `yarn create-post`, fill require content in command line
+- Use `yarn create-post` to create post, fill require content in command line
 - Navigate to `content/{postType}/{title}` and start writting
 - If done:
   + `git add .`
@@ -31,3 +31,4 @@ export const authors = {
   + `git push -f`
   + Create pull request
   + Send pull request link to me
+- If you don't know why create branch and pull request, please read [this](https://codetot.net/contribute-github/)
