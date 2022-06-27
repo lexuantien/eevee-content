@@ -39,11 +39,8 @@ const mdx_bundler_1 = require("mdx-bundler");
 const remark_mdx_images_1 = require("remark-mdx-images");
 const remark_mdx_code_meta_1 = require("remark-mdx-code-meta");
 const reading_time_1 = __importDefault(require("reading-time"));
-const index_js_1 = require("unified/index.js");
-const index_js_2 = __importDefault(require("remark-parse/index.js"));
-const index_js_3 = __importDefault(require("remark-frontmatter/index.js"));
+const remark_toc_headings_js_1 = require("./remark-toc-headings.js");
 //#endregion
-const markdownProcessor = index_js_1.unified().use(index_js_2.default).use(index_js_3.default);
 const reactMdxExportComp = [
     "Paragraph",
     "TextLink",
@@ -75,6 +72,7 @@ const reactMdxExportComp = [
 const getSourceOfFile = (path) => fs.readFileSync(path, "utf-8");
 //Path to the posts folder
 exports.POSTS_PATH = path.join(process.cwd(), "/content");
+let toc = [];
 // https://github.com/tino-brst/personal-site/blob/main/lib/mdast-util-toc.ts
 function compileMdx(filePath) {
     return __awaiter(this, void 0, void 0, function* () {
@@ -96,6 +94,7 @@ function compileMdx(filePath) {
                         ...((_a = options.remarkPlugins) !== null && _a !== void 0 ? _a : []),
                         remark_mdx_images_1.remarkMdxImages,
                         remark_mdx_code_meta_1.remarkMdxCodeMeta,
+                        [remark_toc_headings_js_1.remarkTocHeadings, { exportRef: toc }],
                     ];
                     return options;
                 },
@@ -108,13 +107,12 @@ function compileMdx(filePath) {
                 },
             });
             const readTime = reading_time_1.default(content);
-            const document = markdownProcessor.parse(content);
-            console.log(document);
+            console.log(toc);
             const state = {
                 code,
                 readTime,
                 frontmatter,
-                toc: [],
+                toc,
             };
             return state;
         }
@@ -126,20 +124,24 @@ function compileMdx(filePath) {
         }
     });
 }
-exports.compileMdx = compileMdx;
-compileMdx("stories/how-to-use-async-functions-in-useeffect/index.mdx").then((p) => fs.writeFileSync("./i.js", JSON.stringify(p.code)));
-// let _queue: TPQueue | null = null;
-// async function getQueue() {
-//   const { default: PQueue } = await import("p-queue");
-//   if (_queue) return _queue;
-//   _queue = new PQueue({ concurrency: 1 });
-//   return _queue;
-// }
-// // We have to use a queue because we can't run more than one of these at a time
-// // or we'll hit an out of memory error because esbuild uses a lot of memory...
-// async function queuedCompileMdx(...args: Parameters<typeof compileMdx>) {
-//   const queue = await getQueue();
-//   const result = await queue.add(() => compileMdx(...args));
-//   return result;
-// }
-// export { queuedCompileMdx as compileMdx };
+compileMdx("stories/how-to-use-async-functions-in-useeffect/index.mdx").then((p) => console.log(p.toc));
+let _queue = null;
+function getQueue() {
+    return __awaiter(this, void 0, void 0, function* () {
+        const { default: PQueue } = yield Promise.resolve().then(() => __importStar(require("p-queue")));
+        if (_queue)
+            return _queue;
+        _queue = new PQueue({ concurrency: 1 });
+        return _queue;
+    });
+}
+// We have to use a queue because we can't run more than one of these at a time
+// or we'll hit an out of memory error because esbuild uses a lot of memory...
+function queuedCompileMdx(...args) {
+    return __awaiter(this, void 0, void 0, function* () {
+        const queue = yield getQueue();
+        const result = yield queue.add(() => compileMdx(...args));
+        return result;
+    });
+}
+exports.compileMdx = queuedCompileMdx;
