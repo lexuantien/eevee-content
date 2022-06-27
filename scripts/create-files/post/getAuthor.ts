@@ -1,4 +1,4 @@
-import { authors } from "../../../authors";
+import { authors } from "../../mdx/authors";
 
 /** Return author info, */
 export function getAuthor(author: string) {

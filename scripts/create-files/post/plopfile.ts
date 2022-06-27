@@ -4,7 +4,7 @@ import { getAuthor } from "./getAuthor";
 import { findGitRoot } from "../../monorepo/index";
 import { slugify } from "../../slugify";
 import { nextId } from "../../uuid/index";
-import { authors } from "../../../authors";
+import { authors } from "../../mdx/authors";
 
 const root = findGitRoot();
 
