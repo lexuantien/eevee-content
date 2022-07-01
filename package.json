@@ -16,8 +16,9 @@
     "nohoist": []
   },
   "scripts": {
-    "create-post": "plop --plopfile ./scripts/create-files/post/plopfile.ts --dest . --require ./scripts/ts-node-register",
-    "refresh-content": "node --experimental-specifier-resolution=node --loader ts-node/esm scripts/github/getChangedFiles.ts"
+    "build": "cd scripts && yarn build && cd ..",
+    "refresh-content": "node  --es-module-specifier-resolution=node scripts/dist/mjs/github/getChangedFiles.js",
+    "create-post": "plop --plopfile ./scripts/create-files/post/plopfile.ts --dest . --require ./scripts/ts-node-register"
   },
   "main": "index.js",
   "devDependencies": {
@@ -50,7 +51,7 @@
     "ts-loader": "^9.3.0",
     "ts-node": "^10.8.0",
     "tslib": "2.4.0",
-    "typescript": "4.3.5",
+    "typescript": "4.7.4",
     "yargs": "^17.5.1",
     "yargs-parser": "13.1.2",
     "yargs-unparser": "^2.0.0"

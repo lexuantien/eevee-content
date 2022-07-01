@@ -37,4 +37,4 @@ jobs:
         run: yarn install --frozen-lockfile
       # refresh content in content folder
       - name: 🥬 Refresh post Content
-        run: yarn refresh-content
+        run: yarn build

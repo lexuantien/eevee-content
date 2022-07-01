@@ -6,13 +6,16 @@ import * as path from "path";
 import { bundleMDX } from "mdx-bundler";
 import { remarkMdxImages } from "remark-mdx-images";
 import { remarkMdxCodeMeta } from "remark-mdx-code-meta";
-
 import calculateReadingTime from "reading-time";
+import { remarkTocHeadings } from "./remark-toc-headings.js";
+import { findGitRoot } from "../monorepo/index";
 
 import type TPQueue from "p-queue";
-import type { Frontmatter, MDXCollection } from "../../typings/my-mdx/index";
-
-import { remarkTocHeadings } from "./remark-toc-headings.js";
+import type {
+  Frontmatter,
+  MDXCollection,
+  Toc,
+} from "../../typings/my-mdx/index";
 
 //#endregion
 
@@ -48,9 +51,7 @@ const reactMdxExportComp = [
 const getSourceOfFile = (path: string) => fs.readFileSync(path, "utf-8");
 
 //Path to the posts folder
-export const POSTS_PATH = path.join(process.cwd(), "/content");
-
-let toc = [];
+export const POSTS_PATH = path.join(findGitRoot(), "/content");
 
 // https://github.com/tino-brst/personal-site/blob/main/lib/mdast-util-toc.ts
 async function compileMdx(filePath: string) {
@@ -72,6 +73,9 @@ async function compileMdx(filePath: string) {
   }
 
   const directory = path.join(POSTS_PATH, "/", filePath);
+
+  // store table of content
+  let toc: Toc[] = [];
 
   try {
     const content = getSourceOfFile(directory);
@@ -117,9 +121,9 @@ async function compileMdx(filePath: string) {
   }
 }
 
-// compileMdx("stories/how-to-use-async-functions-in-useeffect/index.mdx").then(
-//   (p) => console.log(p.toc)
-// );
+compileMdx("stories/how-to-use-async-functions-in-useeffect/index.mdx").then(
+  (p) => console.log(p.toc)
+);
 
 let _queue: TPQueue | null = null;
 async function getQueue() {

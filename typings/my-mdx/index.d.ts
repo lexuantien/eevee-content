@@ -39,6 +39,12 @@ export type MdxPage = {
   frontmatter: Frontmatter;
 };
 
+export type Toc = {
+  value: string;
+  url: string;
+  depth: number;
+};
+
 /**
  * This is a separate type from MdxPage because the code string is often
  * pretty big and the pages that simply list the pages shouldn't include the code.
@@ -47,7 +53,7 @@ export type MdxListItem = Omit<MdxPage, "code">;
 
 export type MDXCollection = MdxPage & {
   readTime: ReadTimeResults;
-  toc: any;
+  toc: Toc[];
 };
 
 export type Post = MDXCollection;

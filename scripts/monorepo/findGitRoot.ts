@@ -1,12 +1,12 @@
 // @ts-check
 
-const fs = require('fs');
-const path = require('path');
+import fs from "fs";
+import path from "path";
 
-let cwdForGitRoot;
-let gitRoot;
+let cwdForGitRoot: string;
+let gitRoot: string;
 
-function findGitRoot() {
+export const findGitRoot = () => {
   let cwd = process.cwd();
 
   if (gitRoot && cwdForGitRoot === cwd) {
@@ -16,7 +16,7 @@ function findGitRoot() {
   const root = path.parse(cwd).root;
   let found = false;
   while (!found && cwd !== root) {
-    if (fs.existsSync(path.join(cwd, '.git'))) {
+    if (fs.existsSync(path.join(cwd, ".git"))) {
       found = true;
       break;
     }
@@ -27,7 +27,4 @@ function findGitRoot() {
   gitRoot = cwd;
   cwdForGitRoot = process.cwd();
   return gitRoot;
-}
-
-/** @type {typeof import("./index")["findGitRoot"]} */
-module.exports = findGitRoot;
+};
