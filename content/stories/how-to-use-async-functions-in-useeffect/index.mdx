@@ -17,7 +17,7 @@ meta:
     - async
 ---
 
-import { InlineCode, SideNote } from "@eevee/react-mdx-comp";
+import { InlineCode, SideNote, Ul, Li } from "@eevee/react-mdx-comp";
 
 Let's talk about modules. Being able to share code across multiple JavaScript files and even across multiple projects is an easy thing to do when you start to use modules in JavaScript.
 
@@ -29,10 +29,10 @@ So what are they?
 
 A few things you need to know about modules:
 
-<ul>
-  <li>They have their own scope, similar to how a function has scope.</li>
-  <li>They can hold anything (functionality, data, config)</li>
-</ul>
+<Ul>
+  <Li>They have their own scope, similar to how a function has scope.</Li>
+  <Li>They can hold anything (functionality, data, config)</Li>
+</Ul>
 
 ## Use Cases
 
@@ -52,12 +52,12 @@ Let's go into our playground and create a folder called <InlineCode>modules</Inl
 
 Inside that folder create the following files:
 
-<ul>
-  <li>index.html</li>
-  <li>utils.js</li>
-  <li>handlers.js</li>
-  <li>scripts.js</li>
-</ul>
+<Ul>
+  <Li>index.html</Li>
+  <Li>utils.js</Li>
+  <Li>handlers.js</Li>
+  <Li>scripts.js</Li>
+</Ul>
 
 That gives us 3 separate JavaScript files.
 
