@@ -16,8 +16,8 @@
   "private": "true",
   "license": "MIT",
   "scripts": {
-    "build": "cd scripts && yarn build && cd ..",
-    "refresh-content": "node  --es-module-specifier-resolution=node dist/mjs/scripts/github/getChangedFiles.js",
+    "build": "cd scripts && yarn build",
+    "refresh-content": "node  --es-module-specifier-resolution=node scripts/dist/mjs/scripts/github/getChangedFiles.js",
     "create-post": "plop --plopfile ./plopfile.ts --dest . --require ./scripts/ts-node-register.js"
   },
   "devDependencies": {

@@ -35,8 +35,9 @@ jobs:
       # End yarn setup
       - name: Install dependencies
         run: yarn install --frozen-lockfile
-      # refresh content in content folder
+      # Generate dist folder
       - name: Build
-        run: yarn run
+        run: yarn build
+      # Refresh content in content folder
       - name: 🥬 Refresh post Content
-        run: refresh-content
+        run: yarn refresh-content
