@@ -1,7 +1,7 @@
 //#region import
 
-import * as fs from "fs";
-import * as path from "path";
+import fs from "fs";
+import path from "path";
 
 import { bundleMDX } from "mdx-bundler";
 import { remarkMdxImages } from "remark-mdx-images";
@@ -11,11 +11,7 @@ import { remarkTocHeadings } from "./remark-toc-headings.js";
 import { findGitRoot } from "../monorepo/index";
 
 import type TPQueue from "p-queue";
-import type {
-  Frontmatter,
-  MDXCollection,
-  Toc,
-} from "../../typings/my-mdx/index";
+import type { Frontmatter, Post, Toc } from "@global";
 
 //#endregion
 
@@ -105,7 +101,7 @@ async function compileMdx(filePath: string) {
 
     const readTime = calculateReadingTime(content);
 
-    const state: MDXCollection = {
+    const state: Post = {
       code,
       readTime,
       frontmatter,
@@ -121,9 +117,9 @@ async function compileMdx(filePath: string) {
   }
 }
 
-compileMdx("stories/how-to-use-async-functions-in-useeffect/index.mdx").then(
-  (p) => console.log(p.toc)
-);
+// compileMdx("stories/how-to-use-async-functions-in-useeffect/index.mdx").then(
+//   (p) => console.log(p.toc)
+// );
 
 let _queue: TPQueue | null = null;
 async function getQueue() {

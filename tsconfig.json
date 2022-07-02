@@ -1,11 +1,7 @@
 {
-  "extends": "./scripts/tsconfig.json",
+  "extends": "./tsconfig.base.json",
   "compilerOptions": {
-    "paths": {
-      "@/*": ["./*"]
-    }
-  },
-  "ts-node": {
-    "esm": true
+    "target": "esnext",
+    "module": "commonjs"
   }
 }

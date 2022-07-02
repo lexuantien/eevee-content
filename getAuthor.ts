@@ -1,7 +1,7 @@
-import { authors } from "../../mdx/authors";
+import { authors } from "./authors";
 
 /** Return author info, */
-export function getAuthor(author: string) {
+export const getAuthor = (author: string) => {
   const person = authors[author as keyof typeof authors];
   if (!person) {
     console.warn("Invalid author. Did you add it to authors.json??");
@@ -9,4 +9,4 @@ export function getAuthor(author: string) {
   }
 
   return person;
-}
+};

@@ -1,5 +1,5 @@
-import * as Mdast from "mdast";
-import * as Unist from "unist-util-is";
+import Mdast from "mdast";
+import Unist from "unist-util-is";
 import { toString } from "mdast-util-to-string";
 import GitHubSlugger from "github-slugger";
 

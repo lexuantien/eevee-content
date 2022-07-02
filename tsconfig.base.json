@@ -1,17 +1,36 @@
 {
   "compilerOptions": {
-    "rootDir": ".",
-    "target": "ES2019",
-    "module": "esnext",
+    "allowJs": true,
+    "allowSyntheticDefaultImports": true,
+    "baseUrl": ".",
+    "declaration": true,
+    "esModuleInterop": true,
+    "inlineSourceMap": false,
+    "lib": ["esnext"],
+    "listEmittedFiles": false,
+    "listFiles": false,
     "moduleResolution": "node",
-    "lib": ["ES2019", "dom"],
-    "sourceMap": true,
-    "strict": true,
-    "forceConsistentCasingInFileNames": true,
-    "skipLibCheck": true,
+    "noFallthroughCasesInSwitch": true,
+    "noImplicitAny": false,
     "pretty": true,
-    "typeRoots": ["node_modules/@types", "./typings"],
-    "baseUrl": "."
+    "resolveJsonModule": true,
+    "rootDir": ".",
+    "skipLibCheck": true,
+    "strict": false,
+    "traceResolution": false,
+    "types": [],
+    "typeRoots": ["typings"],
+    "paths": {
+      "@global": ["./@global/index.ts"],
+      "@scripts/*": ["./scripts/*"]
+    }
   },
-  "exclude": ["node_modules"]
+  "compileOnSave": false,
+  "exclude": [
+    "node_modules",
+    "node_modules",
+    "node_modules/**/index.d.ts",
+    "node_modules/@types/node/index.d.ts",
+    "dist"
+  ]
 }

@@ -1,10 +1,11 @@
 // Plop script for templating out a converged mdx post
 import { NodePlopAPI } from "plop";
+
+import { authors } from "./authors";
 import { getAuthor } from "./getAuthor";
-import { findGitRoot } from "../../monorepo/index";
-import { slugify } from "../../slugify";
-import { nextId } from "../../uuid/index";
-import { authors } from "../../mdx/authors";
+import { findGitRoot } from "./scripts/monorepo";
+import { slugify } from "./scripts/slugify";
+import { nextId } from "./scripts/uuid";
 
 const root = findGitRoot();
 
@@ -117,12 +118,12 @@ module.exports = (plop: NodePlopAPI) => {
     actions: (answers) => {
       const { categories, author, keywords, ...rest } = answers as Answers;
 
-      const slugifyTitle = slugify(answers.title);
+      const slugifyTitle = slugify(rest.title);
       const data: Data = {
         ...rest,
-        authorDetail: getAuthor(answers.author),
-        categoryList: answers.categories.trim().split(" "),
-        keywordList: answers.keywords.trim().split(" "),
+        authorDetail: getAuthor(author),
+        categoryList: categories.trim().split(" "),
+        keywordList: keywords.trim().split(" "),
         slugifyTitle,
       };
 

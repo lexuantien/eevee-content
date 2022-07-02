@@ -12,7 +12,7 @@
   },
   "license": "MIT",
   "scripts": {
-    "build": "rm -fr dist/* && tsc -p tsconfig.json && tsc -p tsconfig-cjs.json && ./fixup"
+    "build": "rm -fr dist/* && tsc -p tsconfig.json && tsc -p tsconfig.cjs.json && ./fixup"
   },
   "devDependencies": {
     "p-queue": "^6.0.2",
