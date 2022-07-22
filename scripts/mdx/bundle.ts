@@ -7,6 +7,7 @@ import { bundleMDX } from "mdx-bundler";
 import { remarkMdxImages } from "remark-mdx-images";
 import { remarkMdxCodeMeta } from "remark-mdx-code-meta";
 import calculateReadingTime from "reading-time";
+import { remarkReadingTime } from "./remark-reading-time.js";
 import { remarkTocHeadings } from "./remark-toc-headings.js";
 import { findGitRoot } from "../monorepo/index";
 
@@ -72,6 +73,7 @@ async function compileMdx(filePath: string) {
 
   // store table of content
   let toc: Toc[] = [];
+  let readingArr = [];
 
   try {
     const content = getSourceOfFile(directory);
@@ -85,6 +87,7 @@ async function compileMdx(filePath: string) {
           remarkMdxImages,
           remarkMdxCodeMeta,
           [remarkTocHeadings, { exportRef: toc }],
+          [remarkReadingTime, { exportRef: readingArr }],
         ];
 
         return options;
@@ -98,8 +101,9 @@ async function compileMdx(filePath: string) {
         },
       },
     });
-
-    const readTime = calculateReadingTime(content);
+    // improve later
+    let readingText = readingArr.reduce((str, curr) => (str += `${curr} `), "");
+    const readTime = calculateReadingTime(readingText);
 
     const state: Post = {
       code,
@@ -118,7 +122,7 @@ async function compileMdx(filePath: string) {
 }
 
 // compileMdx("stories/how-to-use-async-functions-in-useeffect/index.mdx").then(
-//   (p) => console.log(p.toc)
+//   (p) => console.log(p.readTime)
 // );
 
 // let _queue: TPQueue | null = null;
