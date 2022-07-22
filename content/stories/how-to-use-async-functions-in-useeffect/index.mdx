@@ -21,7 +21,7 @@ import { InlineCode, SideNote, Ul, Li } from "@eevee/react-mdx-comp";
 
 Let's talk about modules. Being able to share code across multiple JavaScript files and even across multiple projects is an easy thing to do when you start to use modules in JavaScript.
 
-## What are Modules?
+# What are Modules?
 
 **Modules** are a way to structure and organize your JavaScript, and it gives us the ability to share functionality and data across multiple files and projects.
 
@@ -32,7 +32,7 @@ A few things you need to know about modules:
   <Li>They can hold anything (functionality, data, config)</Li>
 </Ul>
 
-## Use Cases
+# Use Cases
 
 If you recall in the previous lesson where we built a currency converter, we had a variable <InlineCode>currencies</InlineCode> that was a giant object of all the currency codes and names. It would be nice if instead of having that object directly in our file, we could put it in a separate module and then import it into the file to use when we need it. That is what modules will allow us to do.
 
@@ -40,7 +40,7 @@ Another use case for modules is utility functions.
 
 For example, in the Dad Jokes lesson, we had a method <InlineCode>randomItemFromArray</InlineCode>. That method is not specific to that project, it's just a handy array utility. We could throw that off into a separate file that is used for utilities.
 
-### Modules in the Browser
+## Modules in the Browser
 
 Let's look at how modules work in the browser, and then we will look at some tooling that will help us work with them.
 
@@ -102,7 +102,7 @@ You might think we can just add another script source tag above the one we added
 
 As you can see, now it works. All we had to do is put one script in front of the other one that needed it in.
 
-### In the Past - Sharing JavaScript Code between Files
+## In the Past - Sharing JavaScript Code between Files
 
 In the past, this was how code was shared across multiple files.
 
@@ -112,7 +112,7 @@ If you look at our <InlineCode>scripts.js</InlineCode> file in VS Code, ESLint i
 
 The only reason it works is because we have globally scoped the function in another file and we are just assuming that it will be available to us on the page. That is a very brittle way to write JavaScript
 
-### In the Present - Sharing JavaScript Code between Files
+## In the Present - Sharing JavaScript Code between Files
 
 The solution to that is to use modules!
 
