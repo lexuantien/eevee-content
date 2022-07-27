@@ -60,7 +60,9 @@ async function go() {
     });
 
     contentPaths.forEach((element) => {
-      if (element.changeType && element.changeType != "D") {
+      console.log(element);
+
+      if (element.changeType && element.changeType !== "D") {
         postMdxPost(element);
       }
     });
