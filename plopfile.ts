@@ -7,6 +7,8 @@ import { findGitRoot } from "./scripts/monorepo";
 import { slugify } from "./scripts/slugify";
 import { nextId } from "./scripts/uuid";
 
+import { Author } from "@global";
+
 const root = findGitRoot();
 
 interface Answers {
@@ -15,8 +17,7 @@ interface Answers {
   description: string;
   date: string;
   author: string;
-  categories: string;
-  keywords: string;
+  tags: string;
 }
 
 interface Data {
@@ -24,13 +25,8 @@ interface Data {
   title: string;
   description: string;
   date: string;
-  authorDetail: {
-    name: string;
-    url: string;
-    id: number;
-  };
-  categoryList: string[];
-  keywordList: string[];
+  authorDetail: Author;
+  tagList: string[];
   slugifyTitle: string;
 }
 
@@ -101,29 +97,21 @@ module.exports = (plop: NodePlopAPI) => {
       },
       {
         type: "input",
-        name: "categories",
-        message: "category",
+        name: "tags",
+        message: "tag",
         default: "react",
-        validate: (input: string) => !!input || "Must enter a categories",
-      },
-      {
-        type: "input",
-        name: "keywords",
-        message: "some keywords",
-        default: "react typescript",
-        validate: (input: string) => !!input || "Must enter a categories",
+        validate: (input: string) => !!input || "Must enter a tag",
       },
     ],
 
     actions: (answers) => {
-      const { categories, author, keywords, ...rest } = answers as Answers;
+      const { tags: categories, author, ...rest } = answers as Answers;
 
       const slugifyTitle = slugify(rest.title);
       const data: Data = {
         ...rest,
         authorDetail: getAuthor(author),
-        categoryList: categories.trim().split(" "),
-        keywordList: keywords.trim().split(" "),
+        tagList: categories.trim().split(" "),
         slugifyTitle,
       };
 

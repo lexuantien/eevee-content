@@ -75,19 +75,17 @@ async function go() {
 
 async function postMdxPost(content: ChangedFile) {
   const result = await compileMdx(content.filename);
-  const { categories, description, meta, title, postId } = result.frontmatter;
+  const { tags, description, title, postId } = result.frontmatter;
 
   // generate id for new mdx post
   // asume every thing true, no bug
   // improve later
   if (!postId) {
     throw Error("id is require, please undo id");
-  } else if (categories.length === 0) {
-    throw Error("category must define");
+  } else if (tags.length === 0) {
+    throw Error("tags must define");
   } else if (!description) {
     throw Error("description must define");
-  } else if (!meta.keywords) {
-    throw Error("meta.keywords must define");
   } else if (!title) {
     throw Error("title must define");
   }

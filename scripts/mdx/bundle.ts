@@ -121,9 +121,9 @@ async function compileMdx(filePath: string) {
   }
 }
 
-// compileMdx("stories/how-to-use-async-functions-in-useeffect/index.mdx").then(
-//   (p) => console.log(p.readTime)
-// );
+compileMdx("stories/my-first-blog/index.mdx").then((p) =>
+  console.log(p.frontmatter)
+);
 
 // let _queue: TPQueue | null = null;
 // async function getQueue() {
