@@ -12,8 +12,7 @@ import type { ReadTimeResults } from "reading-time";
  */
 export type Frontmatter = {
   // require
-  author: [];
-  categories: Array<string>;
+  author: Array<string>;
   description: string;
   id: string;
   meta: {
