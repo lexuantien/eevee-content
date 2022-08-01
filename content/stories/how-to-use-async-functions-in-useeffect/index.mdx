@@ -102,6 +102,13 @@ In <InlineCode>index.html</InlineCode>, there is just have one script tag and th
 
 Add the type attribute on the script tag and set it to <InlineCode>module</InlineCode> like so 👇
 
+```js filename="scripts.js"
+function App() {
+  // scripts.js
+  const name = "wes";
+}
+```
+
 <Ul>
   <Li>index.html</Li>
   <Li>utils.js</Li>
@@ -116,6 +123,13 @@ In the past, this was how code was shared across multiple files.
 That got out of hand pretty quickly because you had all these files that had dependencies and the order of the script tags affected the execution because they all have to load in a waterfall, which means one after the other. Each file is assuming that the other one has access to it.
 
 If you look at our <InlineCode>scripts.js</InlineCode> file in VS Code, ESLint is complaining that returnHi is not defined. That is because that function does not exist within the file, so where did it come from?
+
+```js filename="scripts.js"
+function App() {
+  // scripts.js
+  const name = "wes";
+}
+```
 
 The only reason it works is because we have globally scoped the function in another file and we are just assuming that it will be available to us on the page. That is a very brittle way to write JavaScript
 
