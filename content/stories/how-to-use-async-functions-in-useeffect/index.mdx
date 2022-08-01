@@ -103,7 +103,7 @@ You might think we can just add another script source tag above the one we added
 
 As you can see, now it works. All we had to do is put one script in front of the other one that needed it in.
 
-## In the Past - Sharing JavaScript Code between Files
+## In the Past
 
 In the past, this was how code was shared across multiple files.
 
@@ -113,7 +113,7 @@ If you look at our <InlineCode>scripts.js</InlineCode> file in VS Code, ESLint i
 
 The only reason it works is because we have globally scoped the function in another file and we are just assuming that it will be available to us on the page. That is a very brittle way to write JavaScript
 
-## In the Present - Sharing JavaScript Code between Files
+## In the Present
 
 The solution to that is to use modules!
 
@@ -126,3 +126,21 @@ Let's change this example to use a very sime module.
 In <InlineCode>index.html</InlineCode>, there is just have one script tag and that is going to be the entry point into the JavaScript.
 
 Add the type attribute on the script tag and set it to <InlineCode>module</InlineCode> like so 👇
+
+# Another
+
+In the past, this was how code was shared across multiple files.
+
+That got out of hand pretty quickly because you had all these files that had dependencies and the order of the script tags affected the execution because they all have to load in a waterfall, which means one after the other. Each file is assuming that the other one has access to it.
+
+If you look at our <InlineCode>scripts.js</InlineCode> file in VS Code, ESLint is complaining that returnHi is not defined. That is because that function does not exist within the file, so where did it come from?
+
+The only reason it works is because we have globally scoped the function in another file and we are just assuming that it will be available to us on the page. That is a very brittle way to write JavaScript
+
+In the past, this was how code was shared across multiple files.
+
+That got out of hand pretty quickly because you had all these files that had dependencies and the order of the script tags affected the execution because they all have to load in a waterfall, which means one after the other. Each file is assuming that the other one has access to it.
+
+If you look at our <InlineCode>scripts.js</InlineCode> file in VS Code, ESLint is complaining that returnHi is not defined. That is because that function does not exist within the file, so where did it come from?
+
+The only reason it works is because we have globally scoped the function in another file and we are just assuming that it will be available to us on the page. That is a very brittle way to write JavaScript
