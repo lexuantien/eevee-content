@@ -62,31 +62,11 @@ That gives us 3 separate JavaScript files.
 
 Add the following code to <InlineCode>scripts.js</InlineCode>.
 
-```js filename="scripts.js"
-function App() {
-  // scripts.js
-  const name = "wes";
-}
-```
-
 In <InlineCode>utils.js</InlineCode>, add a simple function.
-
-```js
-// utils.js
-function returnHi(name) {
-  return `hi ${name}`;
-}
-```
 
 Let's say we need to use the <InlineCode>returnHi</InlineCode> function in <InlineCode>scripts.js</InlineCode>. Can we do that if the function is in a separate JavaScript file than the one using it?
 
 Let's try. Modify the code like so.
-
-```js
-// scripts.js
-const name = "wes";
-console.log(returnHi(name));
-```
 
 Go into <InlineCode>index.html</InlineCode> and add the base HTML if it is not already there as well as a script src tag and link it to <InlineCode>scripts.js</InlineCode>. Open the html page in the browser.
 
@@ -95,11 +75,6 @@ When you do that, you should see an error that <InlineCode>returnHi</InlineCode>
 That makes sense - because we have not yet put our <InlineCode>utils</InlineCode> on the page.
 
 You might think we can just add another script source tag above the one we added and link it to utils.
-
-```html
-<script src="./utils.js"></script>
-<script src="./scripts.js"></script>
-```
 
 As you can see, now it works. All we had to do is put one script in front of the other one that needed it in.
 
@@ -126,6 +101,13 @@ Let's change this example to use a very sime module.
 In <InlineCode>index.html</InlineCode>, there is just have one script tag and that is going to be the entry point into the JavaScript.
 
 Add the type attribute on the script tag and set it to <InlineCode>module</InlineCode> like so 👇
+
+<Ul>
+  <Li>index.html</Li>
+  <Li>utils.js</Li>
+  <Li>handlers.js</Li>
+  <Li>scripts.js</Li>
+</Ul>
 
 # Another
 
