@@ -85,7 +85,7 @@ async function compileMdx(filePath: string) {
       mdxOptions: (options) => {
         options.remarkPlugins = [
           ...(options.remarkPlugins ?? []),
-          [remarkCodeHike],
+          [remarkCodeHike, { showCopyButton: true }],
           remarkMdxImages,
           remarkMdxCodeMeta,
           [remarkTocHeadings, { exportRef: toc }],
