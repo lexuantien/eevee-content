@@ -115,25 +115,6 @@ function App() {
 }
 ```
 
-<CodeBlockV2 filename="App.js"  highlight="{8-9,11-12}">
-  function App() {
-    const [theme, setTheme] = useState("dark");
-    const [currentUser, setCurrentUser] = useState({ name: "Taylor" });
-
-    // ...
-
-    return (
-      <ThemeContext.Provider value={theme}>
-        <AuthContext.Provider value={currentUser}>
-          <Page />
-        </AuthContext.Provider>
-      </ThemeContext.Provider>
-    );
-
-}
-
-</CodeBlockV2>
-
 ```js filename="App.js" highlight="{8-9,11-12}"
 function App() {
   const [theme, setTheme] = useState("dark");
