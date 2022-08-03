@@ -18,7 +18,13 @@ tags:
   - async
 ---
 
-import { InlineCode, SideNote, Ul, Li } from "@eevee/react-mdx-comp";
+import {
+  InlineCode,
+  SideNote,
+  Ul,
+  Li,
+  CodeBlockV2,
+} from "@eevee/react-mdx-comp";
 
 Let's talk about modules. Being able to share code across multiple JavaScript files and even across multiple projects is an easy thing to do when you start to use modules in JavaScript.
 
@@ -109,22 +115,22 @@ function App() {
 }
 ```
 
-```js filename="App.js" highlight="{8-9,11-12}"
-function App() {
-  const [theme, setTheme] = useState("dark");
-  const [currentUser, setCurrentUser] = useState({ name: "Taylor" });
+<CodeBlockV2 filename="App.js"  highlight="{8-9,11-12}">
+  function App() {
+    const [theme, setTheme] = useState("dark");
+    const [currentUser, setCurrentUser] = useState({ name: "Taylor" });
 
-  // ...
+    // ...
 
-  return (
-    <ThemeContext.Provider value={theme}>
-      <AuthContext.Provider value={currentUser}>
-        <Page />
-      </AuthContext.Provider>
-    </ThemeContext.Provider>
-  );
-}
-```
+    return (
+      <ThemeContext.Provider value={theme}>
+        <AuthContext.Provider value={currentUser}>
+          <Page />
+        </AuthContext.Provider>
+      </ThemeContext.Provider>
+    );
+  }
+</CodeBlockV2>
 
 <Ul>
   <Li>index.html</Li>

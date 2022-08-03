@@ -43,6 +43,7 @@ const reactMdxExportComp = [
   "SideNote",
   "Expanded",
   "CodeBlock",
+  "CodeBlockV2",
 ];
 
 //reads the file
