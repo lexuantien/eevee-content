@@ -9,7 +9,7 @@ import { remarkMdxCodeMeta } from "remark-mdx-code-meta";
 import calculateReadingTime from "reading-time";
 import { remarkReadingTime } from "./remark-reading-time.js";
 import { remarkTocHeadings } from "./remark-toc-headings.js";
-import { findGitRoot } from "../monorepo/index";
+import { findGitRoot } from "../../monorepo/index";
 
 // import type TPQueue from "p-queue";
 import type { Frontmatter, Post, Toc } from "@global";
