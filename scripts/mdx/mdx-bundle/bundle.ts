@@ -3,6 +3,7 @@
 import fs from "fs";
 import path from "path";
 
+import { remarkCodeHike } from "@code-hike/mdx";
 import { bundleMDX } from "mdx-bundler";
 import { remarkMdxImages } from "remark-mdx-images";
 import { remarkMdxCodeMeta } from "remark-mdx-code-meta";
@@ -84,6 +85,7 @@ async function compileMdx(filePath: string) {
       mdxOptions: (options) => {
         options.remarkPlugins = [
           ...(options.remarkPlugins ?? []),
+          [remarkCodeHike],
           remarkMdxImages,
           remarkMdxCodeMeta,
           [remarkTocHeadings, { exportRef: toc }],
