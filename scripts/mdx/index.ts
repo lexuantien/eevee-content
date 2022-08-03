@@ -9,7 +9,3 @@ async function compileMdx(filePath: string) {
 }
 
 export { compileMdx };
-
-compileMdx("stories/mock-fake-post/index.mdx").then((p) =>
-  console.log(p.frontmatter)
-);
