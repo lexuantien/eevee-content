@@ -3,7 +3,7 @@
 import fs from "fs";
 import path from "path";
 
-import { remarkCodeHike } from "@code-hike/mdx";
+// import { remarkCodeHike } from "@code-hike/mdx";
 import { bundleMDX } from "mdx-bundler";
 import { remarkMdxImages } from "remark-mdx-images";
 import { remarkMdxCodeMeta } from "remark-mdx-code-meta";

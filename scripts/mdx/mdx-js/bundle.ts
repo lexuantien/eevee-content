@@ -4,7 +4,6 @@ import { promises as fss } from "node:fs";
 
 import { compile } from "@mdx-js/mdx";
 import remarkFrontmatter from "remark-frontmatter";
-import yaml from "js-yaml";
 import { findGitRoot } from "../../monorepo/index";
 
 const POSTS_PATH = path.join(findGitRoot(), "/content");
