@@ -2,7 +2,7 @@ import bigInt from "big-integer";
 import fs from "fs";
 import { findGitRoot } from "../monorepo/index";
 
-const root = `${findGitRoot()}/poro.json`;
+const root = `${findGitRoot()}`;
 
 /**
  * @param seq SequenceId was generated for this table
@@ -18,9 +18,13 @@ type PoroId = {
   defaultRootId: number;
 };
 
+type NextID = "blog" | "author";
+
 // https://instagram-engineering.com/sharding-ids-at-instagram-1cf5a71e5a5c
-export function nextId(userId?: number) {
-  const poroId: PoroId = JSON.parse(fs.readFileSync(root, "utf-8") as any);
+export function nextId(next: NextID, userId?: number) {
+  const file = `${root}/${next}.json`;
+
+  const poroId: PoroId = JSON.parse(fs.readFileSync(file, "utf-8") as any);
 
   if (poroId) {
     const { epoch, seq, shard, defaultRootId } = poroId;
@@ -48,7 +52,7 @@ export function nextId(userId?: number) {
     };
 
     // update firestore then return id but future
-    fs.writeFileSync(root, JSON.stringify(data), { flag: "w" });
+    fs.writeFileSync(file, JSON.stringify(data), { flag: "w" });
 
     return id.toString();
   }

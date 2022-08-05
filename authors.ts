@@ -7,9 +7,9 @@ export const authors = {
       "I'm fullstack developer and still FA. Plz contact me if you are girl",
     id: 6969,
   },
-  poro: {
-    name: "Poro Team",
-    nickName: "poro",
+  mimikyu: {
+    name: "Mimikyu",
+    nickName: "mimikyu",
     url: "https://facebook.com/poro.coding",
     description:
       "I'm fullstack developer and still FA. Plz contact me if you are girl",

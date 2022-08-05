@@ -6,6 +6,7 @@ export type Author = {
   name: string;
   url: string;
   nickName: string;
+  description: string;
   id: number;
 };
 
@@ -18,6 +19,7 @@ export type Frontmatter = {
   slugify: string;
   title: string;
   post: PostType;
+  language: string;
 
   // optional
   archived?: boolean;
@@ -36,4 +38,11 @@ export type Post = {
   frontmatter: Frontmatter;
   readTime: ReadTimeResults;
   toc: Toc[];
+};
+
+export type PostI18n = {
+  slugify: string;
+  en?: Post;
+  vi?: Post;
+  ja?: Post;
 };

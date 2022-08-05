@@ -1,56 +1,25 @@
 //#region import
 
-import fs from "fs";
 import path from "path";
 
-// import { remarkCodeHike } from "@code-hike/mdx";
 import { bundleMDX } from "mdx-bundler";
 import { remarkMdxImages } from "remark-mdx-images";
 import { remarkMdxCodeMeta } from "remark-mdx-code-meta";
-import calculateReadingTime from "reading-time";
 import { remarkReadingTime } from "./remark-reading-time.js";
 import { remarkTocHeadings } from "./remark-toc-headings.js";
-import { findGitRoot } from "../../monorepo/index";
 
-// import type TPQueue from "p-queue";
 import type { Frontmatter, Post, Toc } from "@global";
 
+import {
+  fromLib,
+  getReadingTime,
+  getSourceOfFile,
+  POSTS_PATH,
+  REACT_MDX_EXPORT_COMP,
+  varName,
+} from "./utils.js";
+
 //#endregion
-
-const reactMdxExportComp = [
-  "Paragraph",
-  "TextLink",
-  "Blockquote",
-  "Ul",
-  "Ol",
-  "Li",
-  "I",
-  "Em",
-  "PostImage",
-  "Strike",
-  "InlineCode",
-  "CH1",
-  "CH2",
-  "CH3",
-  "H1",
-  "H2",
-  "H3",
-  "ContentHeading",
-  "Heading",
-  "CodeSnippet",
-  "SandPack",
-  "HorizontalRule",
-  "SideNote",
-  "Expanded",
-  "CodeBlock",
-  "CodeBlockV2",
-];
-
-//reads the file
-const getSourceOfFile = (path: string) => fs.readFileSync(path, "utf-8");
-
-//Path to the posts folder
-export const POSTS_PATH = path.join(findGitRoot(), "/content");
 
 // https://github.com/tino-brst/personal-site/blob/main/lib/mdast-util-toc.ts
 async function compileMdx(filePath: string) {
@@ -86,7 +55,6 @@ async function compileMdx(filePath: string) {
       mdxOptions: (options) => {
         options.remarkPlugins = [
           ...(options.remarkPlugins ?? []),
-          // [remarkCodeHike, { showCopyButton: true }],
           remarkMdxImages,
           remarkMdxCodeMeta,
           [remarkTocHeadings, { exportRef: toc }],
@@ -97,17 +65,15 @@ async function compileMdx(filePath: string) {
       },
 
       globals: {
-        "@eevee/react-mdx-comp": {
-          varName: "reactMdxComp",
+        [`${fromLib}`]: {
+          varName,
           defaultExport: false,
-          namedExports: reactMdxExportComp,
+          namedExports: REACT_MDX_EXPORT_COMP,
         },
       },
     });
-    // improve later
-    let readingText = readingArr.reduce((str, curr) => (str += `${curr} `), "");
-    const readTime = calculateReadingTime(readingText);
 
+    const readTime = getReadingTime(readingArr);
     const state: Post = {
       code,
       readTime,
@@ -123,26 +89,5 @@ async function compileMdx(filePath: string) {
     throw error;
   }
 }
-
-// compileMdx("stories/my-first-blog/index.mdx").then((p) =>
-//   console.log(p.frontmatter)
-// );
-
-// let _queue: TPQueue | null = null;
-// async function getQueue() {
-//   const { default: PQueue } = await import("p-queue");
-//   if (_queue) return _queue;
-
-//   _queue = new PQueue({ concurrency: 1 });
-//   return _queue;
-// }
-
-// // We have to use a queue because we can't run more than one of these at a time
-// // or we'll hit an out of memory error because esbuild uses a lot of memory...
-// async function queuedCompileMdx(...args: Parameters<typeof compileMdx>) {
-//   const queue = await getQueue();
-//   const result = await queue.add(() => compileMdx(...args));
-//   return result;
-// }
 
 export { compileMdx };

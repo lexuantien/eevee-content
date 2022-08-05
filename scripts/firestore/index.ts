@@ -1,3 +1,4 @@
+import { Author, PostI18n } from "@global";
 import { initializeApp } from "firebase/app";
 import {
   getFirestore,
@@ -25,9 +26,10 @@ const app = initializeApp(firebaseConfig);
 // Export firestore incase we need to access it directly
 export const firestore = getFirestore(app);
 
-//
-
 // This is just a helper to add the type to the db responses
 export const createCollection = <T = DocumentData>(collectionName: string) => {
   return collection(firestore, collectionName) as CollectionReference<T>;
 };
+
+export const postCol = createCollection<PostI18n>("posts");
+export const authorCol = createCollection<Author>("authors");

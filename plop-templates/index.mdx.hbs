@@ -1,20 +1,23 @@
 ---
 postId: {{postId}}
+slugify: {{slugifySlug}}
+language: {{language}}
 title: {{title}}
-slugify: {{slugifyTitle}}
 description: {{description}}
 date: {{date}}
 author:
-{{#each authorDetail}}
+{{#each author}}
   {{@key}}: {{this}}
 {{/each}}
-post: {{postType}}
+post: {{blogType}}
 tags:
 {{#each tagList}}
   - {{this}}
 {{/each}}
 ---
 
-import {Em} from '@eevee/react-mdx-comp'
+import { Em } from '@eevee/react-mdx-comp'
 
 Hello <Em>{{authorDetail.name}}</Em>
+
+Please write blog with language <strong>{{language}}</strong>

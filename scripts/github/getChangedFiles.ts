@@ -3,12 +3,10 @@
 import { execSync } from "child_process";
 import { compileMdx } from "../mdx/index";
 import { ChangedFile, Change } from "./getChangedFiles.types";
-import { createCollection } from "../firestore/init";
+import { postCol } from "../firestore/index";
 import { setDoc, doc } from "firebase/firestore";
-import type { Post } from "@global/index";
 import { slugify } from "../slugify";
-
-const postCol = createCollection<Post>("posts");
+import { PostI18n } from "@global";
 
 /**
  * @param {*} currentCommitSha default `HEAD^`
@@ -98,7 +96,12 @@ async function postMdxPost(content: ChangedFile) {
   //  push to firestore
   const postDocRef = doc(postCol, `${postId}`);
 
-  await setDoc(postDocRef, result, { merge: true });
+  const postI18n: PostI18n = {
+    slugify: result.frontmatter.slugify,
+    [`${result.frontmatter.language}`]: result,
+  };
+
+  await setDoc(postDocRef, postI18n, { merge: true });
 }
 
 go();
