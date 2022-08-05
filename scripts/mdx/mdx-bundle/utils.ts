@@ -1,7 +1,7 @@
 import fs from "fs";
 import path from "path";
 import calculateReadingTime from "reading-time";
-import { findGitRoot } from "@scripts/monorepo/index";
+import { findGitRoot } from "../../monorepo/index";
 
 export const REACT_MDX_EXPORT_COMP = [
   "Paragraph",

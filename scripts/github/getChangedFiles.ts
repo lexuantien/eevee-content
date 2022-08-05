@@ -90,9 +90,6 @@ async function postMdxPost(content: ChangedFile) {
     throw Error("title must define");
   }
 
-  // maybe you change this after generate
-  result.frontmatter.slugify = slugify(result.frontmatter.title);
-
   //  push to firestore
   const postDocRef = doc(postCol, `${postId}`);
 
