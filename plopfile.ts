@@ -20,7 +20,6 @@ interface CreateAnswers {
   author: Author;
   slug: string;
   date: string;
-  language: string;
   title: string;
   description: string;
   tags: string[];
@@ -33,7 +32,6 @@ interface CreateData {
   date: string;
   author: Author;
   tagList: string[];
-  language: string;
   slugifySlug: string;
   blogType: string;
 }
@@ -213,14 +211,6 @@ module.exports = (plop: NodePlopAPI) => {
           ) || "Must enter valid date dd/mm/yyyy",
       });
 
-      let { language } = await inquirer.prompt<{ language: string }>({
-        type: "list",
-        name: "language",
-        message: "Which language do you want to write?",
-        choices: () => loadLanguageChoices,
-        validate: (language: string) => loadLanguageChoices.includes(language),
-      });
-
       let { title } = await inquirer.prompt<{ title: string }>({
         type: "input",
         name: "title",
@@ -253,20 +243,18 @@ module.exports = (plop: NodePlopAPI) => {
         author,
         slug,
         date,
-        language,
         title,
         description,
         tags,
       };
     },
     actions: (answers) => {
-      const { tags, slug, author, language, blogType, ...rest } =
+      const { tags, slug, author, blogType, ...rest } =
         answers as CreateAnswers;
       const id = nextId("blog", author.id);
       const slugifySlug = `${slug}`;
       const data: CreateData = {
         ...rest,
-        language,
         blogType,
         author,
         tagList: tags,
